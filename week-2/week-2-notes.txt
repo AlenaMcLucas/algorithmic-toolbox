@@ -1,0 +1,93 @@
+## Why Study Algorithms? ##
+
+# Why Study Algorithms? #
+
+- simple programming problems: have a linear scan, cannot do much better, the obvious program work
+- algorithm problems: not clear how to do, simple ideas are too slow, room for optimization
+- artificial intelligence problems: hard to even clearly state
+
+
+## Fibonacci Numbers ##
+
+# Problem Overview #
+
+- the first number is 0, second number is 1, every number after is a sum of the previous two numbers
+
+# Naive Algorithm #
+
+- naive algorithm is a slow but straightforward algorithm
+- the naive fibonacci code is so slow because you have to compute each recursive number multiple times
+
+# Efficient Algorithm #
+
+- one possible algorithm is to store each sum in an array
+
+
+## Greatest Common Divisor ##
+
+# Problem Overview #
+
+- for integers, a and b, their greatest common divisor is the largest integer d so that d divides both a and b
+- a and b are greater than or equal to 0, must run for very large numbers
+
+# Naive Algorithm #
+
+- naive algorithm is to go from 1 to a + b and check every number to see largest divisor that makes both integers, very slow for 20+ digits
+
+# Efficient Algorithm #
+
+- Euclidean algorithm / Key Lemma
+- is b = 0 then return a
+- take the remainder when a is divided by b and return Euclidean GCD of b and a'
+
+
+## Big-O Notation ##
+
+# Computing Runtimes #
+
+- just looking at number of code lines executed is helpful, but not an accurate predictor of runtime
+- initialization depends on memory management system, assignment could take a few operations, loops make run many times doing many operations
+- other things to take into consideration are speed of the computer, the computer's system architecture, compiler, memory hierarchy (how much RAM you have)
+
+# Asymptotic Notation #
+
+- asymptotic runtime looks at how runtime scales with input size n
+- n^2 is worse than number * n
+- common runtimes from lowest to highest: log n, sqrt(n), n, n log n, n^2, 2^n
+
+# Big-O Notation #
+
+- kind of asymptotic notation
+- we assume n is very large, then it allows us to say that one algorithm is in general better than another
+- helps to clean up notation in just one term
+- don't need to worry about computing runtime section issues
+- warnings: big-o loses important information about constant multiples, and it's only asymptotic
+
+# Using Big-O #
+
+- when converting an operation into Big-O constant MDAS doesn't matter, look at exponents
+- n^a grows slower than n^b for 0 < a < b
+- n^a grows slower than b^n for a > 0, b > 1
+- (log n)^a grows slower than n^b for a,b > 0
+- smaller terms can be omitted, i.e. n^2 + n = O(n^2) and 2^n + n^9 = O(2^n)
+
+Example:
+- initialize an array                           O(n)
+- set an array element to 0                     O(1)
+- a for loop for n times                        O(n)
+- sum two numbers and save into array n times   O(n)
+- return an array element                       O(1)
+- Total: O(n) + O(1) + O(1) + O(n) * O(n) + O(1) = O(n^2)
+- Big-O is generally communicated that runtime will be bounded above some amount of time
+- bounded below = omega
+- grow at the same rate = big theta
+- strictly slower = little o
+
+
+## Course Overview ##
+
+Levels of design are:
+- naive algorithm is definition of algorithm, slow
+- algorithm by way of standard tools is using standard techniques
+- optimized algorithm is improving existing algorithm
+- magic algorithm uses unique insights

@@ -1,0 +1,114 @@
+## Introduction ##
+
+# Largest Number #
+
+- toy problem: what is the largest number that consists of digits 3, 9, 5, 9, 7, 1 using all the digits
+- algorithm should be to search for max digit, append it to the number, remove it from the list of digits, and repeat until list of digits is empty
+- I personally think a sorting function would be faster
+
+# Car Fueling #
+
+- car fueling problem: you have a tank size and distance that require a refuel, find minimum number of refills to travel distance based on locations of given gas stations
+- greedy strategy: make some greedy choice, reduce to a smaller problem, iterate
+- greedy choices: refuel at closets gas station, refill at the farthest reachable gas station, go until there is no fuel
+- subproblem: similar problem of smaller size
+- safe move: is a greedy choice if there is an optimal solution consistent with this first move, i.e. refull at the farthest reachable gas station
+
+Car Fueling Concept
+- route R has the minimum number of refills, Gsub1 is position of first refill in R, Gsub2 is next stop in R (refill or B), G is farthest refill reachable from A
+- if G is closer than Gsub2, refill at G instead of Gsub1
+- otherwise, avoid refill at Gsub1
+
+# Car Fueling - Implementation and Analysis #
+
+Car Fueling Implementation   O(n)
+- MinRefills(x,n,L)   [where x contains A, gas station locations, and B]
+- numRefills & currentRefill = 0
+- while currentRefill <= n:
+-  lastRefill = currentRefill
+-  while (currentRefill <= n and x[currentRefill + 1] - x[lastRefill] <= L)
+-   currentRefill += 1
+-  if currentRefill == lastRefill
+-   return IMPOSSIBLE
+-  if currentRefill <= n
+-   numRefills += 1
+- return numRefills
+
+# Main Ingredients of Greedy Algorithms #
+
+- prove a greedy choice is a safe move
+
+Reduction to Subproblem
+- Make a first move
+- Then solve a problem of the same kind
+- Smaller: fewer digits, fewer fuel stations
+
+- iterate until there are no problems left
+
+## Grouping Children ##
+
+# Celebration Party Problem #
+
+- organize children into the minimum possible number of groups such that the age of any two children in the same group differ by at most one year
+
+- naive algorithm will look at every possible partition and checks if the difference of the first child in the group to the last child is less than 1
+- running time is 2^n
+
+# Efficient Algorithm for Grouping Children #
+
+- input is a set of n points, output is integer
+- make a safe move by covering the leftmost point with a unit segement with left end in this point
+- the subproblem is solved by removing all points which are already covered by the segment and repeat the process until there are no points left in the set
+
+# Analysis and Implementation of the Efficient Algorithm #
+
+- PointsCoverSorted(xsub1,...,xsubn)
+-  assume points are ordered (or just sort them)
+-  R = {} and i = 1
+-  while i <= n:
+-   [l,r] = [xsubi, xsubi + 1]
+-   R = RU{[l,r]}
+-   i += 1
+-   while i <= n and xsubi <= r:
+-    i += 1
+- return R
+
+- creating segments starting from left to right
+- running time is O(n)
+
+## Fractional Knapsack ##
+
+# Long Hike #
+
+- knapsack can hold 15kg and want to maximize calories to take
+- input are the weights and values of items, capacity w
+- output is maximum total value of fractions of items that fit into a bag of capacity w
+
+# Fractional Knapsack - Implementation, Analysis and Optimization #
+
+- to make safe choice, must look at maximizing value per unit/weight
+- while knapsack is not full, then choose item with maximum v/w
+- if it fits, take all of it, otherwise take enough to fill knapsack
+- return total value and amounts taken
+
+- Knapsack(W, wsub1, vsub1, ..., wsubn, vsubn)
+- A = [0, 0, ..., 0]
+- V = 0
+- repeat n times:
+-  if W = 0:
+-   return (V,A)
+-  select i with wsubi > 0 and max vsubi/wsubi
+-  a = min(wsubi,W)
+-  V = V + a(vsubi/wsubi)
+-  wsubi = wsubi - a
+-  A[i] = A[i] + a
+-  W = W - a
+- return (V,A)
+
+- runtime is O(n^2)
+- can improve this by sorting by value per weight unit first, runtime will be O(n)
+
+# Review of Greedy Algorithms #
+
+- main ingredients: safe move, prove safety, solve subproblem, estimate runtime
+- greedy moves can be made faster by sorting

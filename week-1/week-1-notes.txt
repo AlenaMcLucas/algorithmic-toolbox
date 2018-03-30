@@ -1,0 +1,15 @@
+Five steps to soliving a programming challenge:
+
+1. Reading the Problem - Understand the description, time limit, memory limit, sample tests, input requirements, output requirements, and other given constraints.
+2. Designing an Algorithm - Design the algorithm with pseudocode, then code it. Your laptop performs roughly 10^8-10^9 operations per second, so check that against the maximum size of a dataset and Big O.
+3. Impelementing an Algorithm - Ensure your file extension is correct.
+4. Testing and Debugging - Check that your program produces correct results on all sample datasets. Then check how long it takes on a large dataset. Test the largest and smallest cases. Test boundary values. Test outlier cases (i.e. all 0s, degenerated cases like an empty list, etc). Test randomnly generated data. Then stress test. Debug as is necessary.
+5. Submit - See if your algorithm works and passes the time and memory constraints.
+
+Stress Testing
+
+1. Implement a slow but simple algorithm (only if result is unique).
+2. Generate pseudorandom test cases and biased test casts.
+3. Look at both results to see if they (significantly) differ.
+
+- Watch out for integer overflow and other limitations of datatypes.
