@@ -8,23 +8,23 @@ def get_optimal_value(capacity, weights, values):
 
     # create 3d list to store info in
     for i in range(len(weights)):
-    	items.extend([[values[i],weights[i],(float(weights[i])/float(values[i]))]])
+    	items.extend([[values[i],weights[i],(float(values[i])/float(weights[i]))]])
     
     #sort items my maximum value per weight unit
-    print(items)
     items = sorted(items, key = itemgetter(2), reverse = True)
-    print(items)
+    #print(items)
 
-    #while capacity > 0:
-    #	if items[0][1] < capacity:
-    #		current_item = items.pop(0)
-    #		value += current_item[0]
-    #		capacity -= current_item[1]
-    #	else:
-    #		current_item = items.pop(0)
-    #		value += (capacity/current_item[1])*current_item[0]
-    #		capacity = 0
-    #return value
+    while capacity > 0 and items != []:
+        if items[0][1] < capacity:
+            current_item = items.pop(0)
+            value += current_item[0]
+            capacity -= current_item[1]
+        else:
+            current_item = items.pop(0)
+            value += (capacity/current_item[1])*current_item[0]
+            capacity = 0
+
+    return value
 
 
 if __name__ == "__main__":
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     values = data[2:(2 * n + 2):2]
     weights = data[3:(2 * n + 2):2]
     opt_value = get_optimal_value(capacity, weights, values)
-    #print("{:.10f}".format(opt_value))
+    print("{:.10f}".format(opt_value))
