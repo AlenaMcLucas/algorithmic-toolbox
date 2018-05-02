@@ -1,0 +1,81 @@
+### Divide-and-Conquer ###
+
+## Introduction ##
+
+# Intro #
+
+- subproblems need to be of the same type and cannot overlap
+- first break up the problem, then solve each subproblem in turn, then combine results to provide one answer to initial problem
+
+# Linear Search #
+
+- assuming linear search is unsorted
+- used in arrays or linked lists
+- a recursive relation is an equation recursively defining a sequence of values, Fibonacci is one example, O(n)
+
+# Binary Search #
+
+- searching sorted data is much faster
+- if we look at index and next element, we can understand how much to step/skip to find element we are searching for
+- return element we are looking for, or return element one lower and one greater than where we should find key if can't find it, otherwise if all elements are greater than the key return low - 1
+- algorithm:
+  - pass array, high, low and key
+  - if high is less than low, return low -1 
+  - else check the midpoint if it's the key, if not take value and test the appropriate half
+  - recursively call function until key is either found or not
+
+# Binary Search Runtime #
+
+- O(log2(n))
+- an iterative version is also possible using a while loop, doesn't require the same stack space
+- in translation example where can't sort alphabetically across different languages, can sacrifice space my creating second arrays with numeric sorting to retain what words correspond to each other across languages
+
+## Polynomial Multiplication ##
+
+# Problem Overview and Naive Solution #
+
+- some uses of multiplying polynomials are: error-correcting codes, large-integer multiplication, generating functions, convolution in signal processing
+- create list of coefficients, don't forget that if a polynomial is missing we must set its value to 0
+- naive algorithm is to create a product array with 2n - 1 terms, then multiply and add respective terms linearly, storing the results in the array, O(n^2)
+
+# Naive Divide-and-Conquer Algorithm #
+
+- refer to videos for algorithm, must break up into parts, factor our x, and calculate, then multiple and sum everything back together...
+- must calculate D1E1, D0E0, D1E0, D0E1 and then sum
+- O(n^2)
+
+# Faster Divide-and-Conquer Algorithm #
+
+- Karatsuba approach
+- three multiplications instead of four D1E1, D0E0 and (D1 + D0)(E1 + E0)
+- O(n^(log2(3))) = O(n^1.58)
+
+## Master Theorem ##
+
+# What is the Master Theorem #
+
+- if T(n) = a * T(n/b) + O(n^d)   for constants a > 0, b > 1, d >= 0), then:
+  - if d > logb(a), then   O(n^d)
+  - if d = logb(a), then   O(n^d * logn)
+  - if d < logb(a), then   O(n^(logb(a)))
+
+  # Proof of the Master Theorem #
+
+  - geometric series increase my a multiplicative factor = r, formula for solving for a given  is = a * ((1 - r)^n)/(1 - r)   where a = first term, n = numner of terms in sequence
+  - in this case:
+    - if r < 1, then   O(a)
+    - if r > 1, then   O(a * r^(n-1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
